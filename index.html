@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        jsonp({
+            url: 'https://wis.qq.com/weather/common',
+            data: {
+                source: 'pc',
+                weather_type: 'forecast_1h|forecast_24h ',
+                province: '湖北省',
+                city: '武汉市'
+            },
+            success: function (data) {
+                // 在请求函数里面使用模板引擎将模板与指定的数据进行拼接号
+                let html = template('tpl', { info: data.data.forecast_1h })
+                //将拼接好了字符串放到页面中
+                box.innerHTML = html;
+
+            }
+        })
+
+    </script>
+</body>
+
+</html>
